@@ -1,0 +1,9 @@
+{% extends 'users/base.html' %}
+{% block title %}Create Profile Form{% endblock title %}
+
+{% block content %}
+    <div class="signup-content">
+        <h2 class="form-title">Your profile was created successfully...</h2>
+        <button class="form-submit"><a href="{% url 'chat:home' %}">Go To Chat Page</a></button>
+    </div>
+{% endblock content %}

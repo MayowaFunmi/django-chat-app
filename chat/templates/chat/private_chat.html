@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Private Chat Page</title>
+</head>
+<body>
+    <div>
+        <h3>Chat Page between {{ sender }} and {{ receiver }}.</h3>
+        <div id="display_chats">
+
+        </div>
+        <form id="private_form">
+            {% csrf_token %}
+            <input type="hidden" name="sender" id="sender" value="{{ sender }}" readonly><br>
+            <input type="hidden" name="receiver" id="receiver" value="{{ receiver }}" readonly><br>
+            {% for chat in chat_details %}
+                <input type="hidden" name="chat_id" id="chat_id" value="{{ chat.id }}" readonly>
+            {% endfor %}<br>
+            <textarea id="message" name="message" required></textarea><br>
+            <button type="submit">Send Chat</button>
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/private_chat.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block title %}Create Profile Form{% endblock title %}
+
+{% block content %}
+    <div class="message">
+        {% if messages %}
+            {% for message in messages %}
+                <h3 style="text-align: center;">{{ message }}</h3>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="signup-content">
+        <h2 class="form-title">Create Profile Form</h2>
+        <h3>Your Username: {{ request.user.username }}</h3>
+        <form method="post" id="profileForm" data-cities-url="{% url 'users:ajax_load_cities' %}" novalidate  enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <div class="form-group">
+                <input type="submit" name="submit" id="submit" class="form-submit" value="Save Profile"/>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'js/create_profile.js' %}"></script>
+{% endblock javascript %}
